@@ -1,0 +1,39 @@
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Curieuzeneus</title>
+     <link rel="stylesheet" href="./css/variables.css">
+     <link rel="stylesheet" href="./css/global.css">
+     <link rel="manifest" href="./manifest.json">
+     <meta name="theme-color" content="#e26fd7" />
+     <link rel="apple-touch-icon" href="./ios/192.png">
+</head>
+
+
+<body>
+     <h1>Insert installation guide here</h1>
+     <script>
+          if ('serviceWorker' in navigator) {
+               navigator.serviceWorker.register('./service-worker.js');
+          }
+
+          const checkPWA = () => {
+               const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+               const isPWA = (document.referrer.startsWith('android-app://') || navigator.standalone || isStandalone);
+               if (isPWA) document.location.href = './app';
+          }
+
+          checkPWA();
+          setInterval(checkPWA, 1000);
+
+
+          window.addEventListener('appinstalled', () => {
+               document.location.href = './install-succesfull'
+          });
+     </script>
+</body>
+
+</html>
