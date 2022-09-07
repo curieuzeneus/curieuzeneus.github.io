@@ -30,7 +30,7 @@
           const checkPWA = () => {
                const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
                const isPWA = (document.referrer.startsWith('android-app://') || navigator.standalone || isStandalone);
-               //if (!isPWA) document.location.href = '/';
+               if (!isPWA) document.location.href = '/';
           }
 
           checkPWA();

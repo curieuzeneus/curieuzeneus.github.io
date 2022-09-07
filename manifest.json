@@ -455,6 +455,7 @@
         ],
      "theme_color": "#000000",
      "background_color": "#FFFFFF",
-     "display": "fullscreen",
-     "orientation": "portait"
+     "display": "standalone",
+     "orientation": "portait",
+     "prefer_related_applications": "false"
 }
