@@ -12,21 +12,26 @@
      <link rel="manifest" href="/manifest.json">
      <meta name="theme-color" content="#e26fd7" />
      <link rel="apple-touch-icon" href="/ios/192.png">
+     <link rel="shortcut icon" href="../logo.png" type="image/x-icon">
 </head>
 
 
 <body>
 
-     <div class="blob purple-blue-yellow"></div>
-     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-     <h1>App</h1>
-
-
-     <svg viewBox="0 0 500 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10rem" id="blobSvg">
-          <path fill="red"></path>
-          <path fill="blue"></path>
-          <path fill="orange"></path>
-      </svg>
+     <div class="background">
+          <svg id="blob-1" class="blob blob-shape-1 blob-yellow-blue-purple" viewBox="0 0 500 500" preserveAspectRatio="none"><path></path><path></path><path></path></svg>
+          <svg id="blob-2" class="blob blob-shape-2 blob-purple-blue-yellow" viewBox="0 0 500 500" preserveAspectRatio="none"><path></path><path></path><path></path></svg>
+          <svg id="blob-3" class="blob blob-shape-3 blob-yellow-purple" viewBox="0 0 500 500" preserveAspectRatio="none"><path></path><path></path><path></path></svg>
+          <svg id="blob-4" class="blob blob-shape-4 blob-blue-yellow" viewBox="0 0 500 500" preserveAspectRatio="none"><path></path><path></path><path></path></svg>
+     </div>
+     <div class="foreground blurry-background">
+          <div class="splashscreen">
+               <img src="../logo_transparent.png" alt="Curieuzeneus logo" draggable="false">
+               <!--<svg class="logo-text"><text x="51.5%" y="50%" dominant-baseline="middle" text-anchor="middle">CURIEUZENEUS</text></svg>-->
+               <img src="../logo_text.png" alt="CURIEUZENEUS" draggable="false">
+               <button id="continue">TIK OM VERDER TE GAAN</button>
+          </div>
+     </div>
 
      <script>
           if ('serviceWorker' in navigator) {

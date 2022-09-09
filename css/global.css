@@ -1,4 +1,13 @@
-
 body {
      background: var(--pink);
+}
+
+@font-face {
+     font-family: Break;
+     src: url(../Break.ttf);
+}
+
+@font-face {
+     font-family: MarketDeco;
+     src: url(../Market_Deco.ttf);
 }
