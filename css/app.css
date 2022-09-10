@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
      overscroll-behavior-y: contain;
      overscroll-behavior: none;
      overflow: hidden;
@@ -17,11 +18,21 @@ html, body {
 }
 
 .blurry-background {
-     /*backdrop-filter: blur(5px);*/
+     backdrop-filter: blur(20px);
 }
 
-.background {z-index: -1;}
-.background, .foreground {
+.background {
+     z-index: -1;
+     transition: opacity 0s;
+}
+
+.background.opaque {
+     opacity: 0.33;
+     transition: opacity .2s;
+}
+
+.background,
+.foreground {
      position: absolute;
      top: 0;
      left: 0;
@@ -31,8 +42,13 @@ html, body {
 
 
 @keyframes blob-spin {
-     0% {rotate: 0deg;}
-     100% {rotate: 360deg;}
+     0% {
+          rotate: 0deg;
+     }
+
+     100% {
+          rotate: 360deg;
+     }
 }
 
 .blob path {
@@ -92,107 +108,409 @@ html, body {
 */
 
 @keyframes blob-morph {
-	0% {d: var(--path-0)}
-	1% {d: var(--path-1)}
-	2% {d: var(--path-2)}
-	3% {d: var(--path-3)}
-	4% {d: var(--path-4)}
-	5% {d: var(--path-5)}
-	6% {d: var(--path-6)}
-	7% {d: var(--path-7)}
-	8% {d: var(--path-8)}
-	9% {d: var(--path-9)}
-	10% {d: var(--path-10)}
-	11% {d: var(--path-11)}
-	12% {d: var(--path-12)}
-	13% {d: var(--path-13)}
-	14% {d: var(--path-14)}
-	15% {d: var(--path-15)}
-	16% {d: var(--path-16)}
-	17% {d: var(--path-17)}
-	18% {d: var(--path-18)}
-	19% {d: var(--path-19)}
-	20% {d: var(--path-20)}
-	21% {d: var(--path-21)}
-	22% {d: var(--path-22)}
-	23% {d: var(--path-23)}
-	24% {d: var(--path-24)}
-	25% {d: var(--path-25)}
-	26% {d: var(--path-26)}
-	27% {d: var(--path-27)}
-	28% {d: var(--path-28)}
-	29% {d: var(--path-29)}
-	30% {d: var(--path-30)}
-	31% {d: var(--path-31)}
-	32% {d: var(--path-32)}
-	33% {d: var(--path-33)}
-	34% {d: var(--path-34)}
-	35% {d: var(--path-35)}
-	36% {d: var(--path-36)}
-	37% {d: var(--path-37)}
-	38% {d: var(--path-38)}
-	39% {d: var(--path-39)}
-	40% {d: var(--path-40)}
-	41% {d: var(--path-41)}
-	42% {d: var(--path-42)}
-	43% {d: var(--path-43)}
-	44% {d: var(--path-44)}
-	45% {d: var(--path-45)}
-	46% {d: var(--path-46)}
-	47% {d: var(--path-47)}
-	48% {d: var(--path-48)}
-	49% {d: var(--path-49)}
-	50% {d: var(--path-50)}
-	51% {d: var(--path-51)}
-	52% {d: var(--path-52)}
-	53% {d: var(--path-53)}
-	54% {d: var(--path-54)}
-	55% {d: var(--path-55)}
-	56% {d: var(--path-56)}
-	57% {d: var(--path-57)}
-	58% {d: var(--path-58)}
-	59% {d: var(--path-59)}
-	60% {d: var(--path-60)}
-	61% {d: var(--path-61)}
-	62% {d: var(--path-62)}
-	63% {d: var(--path-63)}
-	64% {d: var(--path-64)}
-	65% {d: var(--path-65)}
-	66% {d: var(--path-66)}
-	67% {d: var(--path-67)}
-	68% {d: var(--path-68)}
-	69% {d: var(--path-69)}
-	70% {d: var(--path-70)}
-	71% {d: var(--path-71)}
-	72% {d: var(--path-72)}
-	73% {d: var(--path-73)}
-	74% {d: var(--path-74)}
-	75% {d: var(--path-75)}
-	76% {d: var(--path-76)}
-	77% {d: var(--path-77)}
-	78% {d: var(--path-78)}
-	79% {d: var(--path-79)}
-	80% {d: var(--path-80)}
-	81% {d: var(--path-81)}
-	82% {d: var(--path-82)}
-	83% {d: var(--path-83)}
-	84% {d: var(--path-84)}
-	85% {d: var(--path-85)}
-	86% {d: var(--path-86)}
-	87% {d: var(--path-87)}
-	88% {d: var(--path-88)}
-	89% {d: var(--path-89)}
-	90% {d: var(--path-90)}
-	91% {d: var(--path-91)}
-	92% {d: var(--path-92)}
-	93% {d: var(--path-93)}
-	94% {d: var(--path-94)}
-	95% {d: var(--path-95)}
-	96% {d: var(--path-96)}
-	97% {d: var(--path-97)}
-	98% {d: var(--path-98)}
-	99% {d: var(--path-99)}
-	100% {d: var(--path-0)}
+     0% {
+          d: var(--path-0)
+     }
+
+     1% {
+          d: var(--path-1)
+     }
+
+     2% {
+          d: var(--path-2)
+     }
+
+     3% {
+          d: var(--path-3)
+     }
+
+     4% {
+          d: var(--path-4)
+     }
+
+     5% {
+          d: var(--path-5)
+     }
+
+     6% {
+          d: var(--path-6)
+     }
+
+     7% {
+          d: var(--path-7)
+     }
+
+     8% {
+          d: var(--path-8)
+     }
+
+     9% {
+          d: var(--path-9)
+     }
+
+     10% {
+          d: var(--path-10)
+     }
+
+     11% {
+          d: var(--path-11)
+     }
+
+     12% {
+          d: var(--path-12)
+     }
+
+     13% {
+          d: var(--path-13)
+     }
+
+     14% {
+          d: var(--path-14)
+     }
+
+     15% {
+          d: var(--path-15)
+     }
+
+     16% {
+          d: var(--path-16)
+     }
+
+     17% {
+          d: var(--path-17)
+     }
+
+     18% {
+          d: var(--path-18)
+     }
+
+     19% {
+          d: var(--path-19)
+     }
+
+     20% {
+          d: var(--path-20)
+     }
+
+     21% {
+          d: var(--path-21)
+     }
+
+     22% {
+          d: var(--path-22)
+     }
+
+     23% {
+          d: var(--path-23)
+     }
+
+     24% {
+          d: var(--path-24)
+     }
+
+     25% {
+          d: var(--path-25)
+     }
+
+     26% {
+          d: var(--path-26)
+     }
+
+     27% {
+          d: var(--path-27)
+     }
+
+     28% {
+          d: var(--path-28)
+     }
+
+     29% {
+          d: var(--path-29)
+     }
+
+     30% {
+          d: var(--path-30)
+     }
+
+     31% {
+          d: var(--path-31)
+     }
+
+     32% {
+          d: var(--path-32)
+     }
+
+     33% {
+          d: var(--path-33)
+     }
+
+     34% {
+          d: var(--path-34)
+     }
+
+     35% {
+          d: var(--path-35)
+     }
+
+     36% {
+          d: var(--path-36)
+     }
+
+     37% {
+          d: var(--path-37)
+     }
+
+     38% {
+          d: var(--path-38)
+     }
+
+     39% {
+          d: var(--path-39)
+     }
+
+     40% {
+          d: var(--path-40)
+     }
+
+     41% {
+          d: var(--path-41)
+     }
+
+     42% {
+          d: var(--path-42)
+     }
+
+     43% {
+          d: var(--path-43)
+     }
+
+     44% {
+          d: var(--path-44)
+     }
+
+     45% {
+          d: var(--path-45)
+     }
+
+     46% {
+          d: var(--path-46)
+     }
+
+     47% {
+          d: var(--path-47)
+     }
+
+     48% {
+          d: var(--path-48)
+     }
+
+     49% {
+          d: var(--path-49)
+     }
+
+     50% {
+          d: var(--path-50)
+     }
+
+     51% {
+          d: var(--path-51)
+     }
+
+     52% {
+          d: var(--path-52)
+     }
+
+     53% {
+          d: var(--path-53)
+     }
+
+     54% {
+          d: var(--path-54)
+     }
+
+     55% {
+          d: var(--path-55)
+     }
+
+     56% {
+          d: var(--path-56)
+     }
+
+     57% {
+          d: var(--path-57)
+     }
+
+     58% {
+          d: var(--path-58)
+     }
+
+     59% {
+          d: var(--path-59)
+     }
+
+     60% {
+          d: var(--path-60)
+     }
+
+     61% {
+          d: var(--path-61)
+     }
+
+     62% {
+          d: var(--path-62)
+     }
+
+     63% {
+          d: var(--path-63)
+     }
+
+     64% {
+          d: var(--path-64)
+     }
+
+     65% {
+          d: var(--path-65)
+     }
+
+     66% {
+          d: var(--path-66)
+     }
+
+     67% {
+          d: var(--path-67)
+     }
+
+     68% {
+          d: var(--path-68)
+     }
+
+     69% {
+          d: var(--path-69)
+     }
+
+     70% {
+          d: var(--path-70)
+     }
+
+     71% {
+          d: var(--path-71)
+     }
+
+     72% {
+          d: var(--path-72)
+     }
+
+     73% {
+          d: var(--path-73)
+     }
+
+     74% {
+          d: var(--path-74)
+     }
+
+     75% {
+          d: var(--path-75)
+     }
+
+     76% {
+          d: var(--path-76)
+     }
+
+     77% {
+          d: var(--path-77)
+     }
+
+     78% {
+          d: var(--path-78)
+     }
+
+     79% {
+          d: var(--path-79)
+     }
+
+     80% {
+          d: var(--path-80)
+     }
+
+     81% {
+          d: var(--path-81)
+     }
+
+     82% {
+          d: var(--path-82)
+     }
+
+     83% {
+          d: var(--path-83)
+     }
+
+     84% {
+          d: var(--path-84)
+     }
+
+     85% {
+          d: var(--path-85)
+     }
+
+     86% {
+          d: var(--path-86)
+     }
+
+     87% {
+          d: var(--path-87)
+     }
+
+     88% {
+          d: var(--path-88)
+     }
+
+     89% {
+          d: var(--path-89)
+     }
+
+     90% {
+          d: var(--path-90)
+     }
+
+     91% {
+          d: var(--path-91)
+     }
+
+     92% {
+          d: var(--path-92)
+     }
+
+     93% {
+          d: var(--path-93)
+     }
+
+     94% {
+          d: var(--path-94)
+     }
+
+     95% {
+          d: var(--path-95)
+     }
+
+     96% {
+          d: var(--path-96)
+     }
+
+     97% {
+          d: var(--path-97)
+     }
+
+     98% {
+          d: var(--path-98)
+     }
+
+     99% {
+          d: var(--path-99)
+     }
+
+     100% {
+          d: var(--path-0)
+     }
 }
 
 /* ———[Blob shape generation code]———
@@ -414,7 +732,7 @@ html, body {
      --path-99: path('M460.5,279Q428,308,420.5,338.5Q413,369,400,403.5Q387,438,346,428Q305,418,277.5,436Q250,454,221,441Q192,428,149.5,437Q107,446,101,404.5Q95,363,74,338.5Q53,314,63.5,282Q74,250,53.5,215Q33,180,61,156.5Q89,133,108,106.5Q127,80,158.5,73Q190,66,220,44.5Q250,23,283,34.5Q316,46,348.5,58Q381,70,392.5,104Q404,138,445.5,155.5Q487,173,490,211.5Q493,250,460.5,279Z');
      --path-100: path('M451.5,279Q429,308,422,339Q415,370,385,382Q355,394,339,435Q323,476,286.5,459Q250,442,214,457Q178,472,143.5,457.5Q109,443,80,419Q51,395,58.5,352.5Q66,310,62,280Q58,250,61.5,220Q65,190,79,163Q93,136,117.5,118.5Q142,101,158.5,60Q175,19,212.5,45.5Q250,72,279,72.5Q308,73,346.5,68.5Q385,64,414.5,86.5Q444,109,450.5,146Q457,183,465.5,216.5Q474,250,451.5,279Z');
 }
- 
+
 .blob-shape-3 {
      --path-0: path('M483,286Q471,322,448.5,350Q426,378,389.5,385Q353,392,339.5,438.5Q326,485,288,458Q250,431,217.5,441Q185,451,154.5,437Q124,423,112,391Q100,359,76,336.5Q52,314,43,282Q34,250,51.5,220.5Q69,191,74,158.5Q79,126,96,94Q113,62,151.5,63.5Q190,65,220,51Q250,37,281.5,46.5Q313,56,355,52Q397,48,422.5,77Q448,106,440.5,148.5Q433,191,464,220.5Q495,250,483,286Z');
      --path-1: path('M471.5,285Q466,320,457,357Q448,394,403,396Q358,398,332,410.5Q306,423,278,435Q250,447,222,434Q194,421,161.5,419Q129,417,104.5,395Q80,373,63,344.5Q46,316,37,283Q28,250,34,216Q40,182,44.5,143Q49,104,90.5,95.5Q132,87,155.5,59.5Q179,32,214.5,48Q250,64,281,61Q312,58,340,73Q368,88,397,105Q426,122,452,149Q478,176,477.5,213Q477,250,471.5,285Z');
@@ -770,24 +1088,40 @@ html, body {
      display: flex;
      align-items: center;
      justify-content: center;
+     flex-direction: column;
+     width: 100vw;
+     height: 100vh;
 }
 
-.splashscreen {
+.screen.shown {
+     transform: scale(1);
+     transition: transform .2s;
+}
+
+.screen {
+     transform: scale(0);
      height: inherit;
      display: flex;
      flex-direction: column;
      align-items: center;
      justify-content: center;
      max-width: 30rem;
+
+     position: absolute;
+     top: 0;
+     left: 50;
+
+     overflow: hidden;
+
 }
 
-.splashscreen img:nth-child(1) {
+.screen-splash img:nth-child(1) {
      filter: drop-shadow(0px 3px 5px rgba(0 0 0 / .5));
      width: 70%;
      pointer-events: none;
 }
 
-.splashscreen img:nth-child(2) {
+.screen-splash img:nth-child(2) {
      width: 95%;
      pointer-events: none;
      margin-block: 3rem;
@@ -814,7 +1148,7 @@ html, body {
      font-size: min(12vw, 3.7rem);
 }
 
-.splashscreen button {
+.screen-splash button {
      font-family: 'MarketDeco';
      outline: none;
      border: none;
@@ -826,7 +1160,257 @@ html, body {
 }
 
 @keyframes bounce {
-     0% {translate: 0 5px;}
-     50% {translate: 0 -5px;}
-     100% {translate: 0 5px;}
+     0% {
+          translate: 0 5px;
+     }
+
+     50% {
+          translate: 0 -5px;
+     }
+
+     100% {
+          translate: 0 5px;
+     }
+}
+
+.screen-home {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     align-items: flex-start;
+}
+
+.screen-home img:nth-child(1) {
+     width: 95%;
+     margin: auto;
+}
+
+.screen-home img:nth-child(3) {
+     width: min(5rem, 10vw);
+     filter: drop-shadow(0px 3px 5px rgba(0 0 0 / .5));
+     margin: 2rem;
+}
+
+.screen-home .buttons {
+     margin: auto;
+     flex-grow: 1;
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     gap: 3rem;
+}
+
+.green-button {
+     background-color: var(--green);
+     border: none;
+     width: 100%;
+     color: white;
+     font-family: 'MarketDeco';
+     font-size: min(3rem, 10vw);
+     padding: .75rem 4rem;
+     font-weight: 100;
+     border-radius: 1rem;
+     box-shadow: 0 4px 5px -5px rgba(0 0 0 / .5), 0 5px 0 #699645;
+     transition: background-color .1s;
+
+     /* https://stackoverflow.com/a/69196391 */
+     text-shadow: 2px 0px 0 #000, 1.7709120513064198px 0.929446344087537px 0 #000, 1.1361294934623118px 1.6459677317873127px 0 #000, 0.241073360510646px 1.985417748196108px 0 #000, -0.7092097740850709px 1.8700324853708297px 0 #000, -1.4970214963422024px 1.3262453164815904px 0 #000, -1.941883634852104px 0.47863132857511537px 0 #000, -1.9418836348521042px -0.47863132857511487px 0 #000, -1.4970214963422026px -1.32624531648159px 0 #000, -0.7092097740850718px -1.8700324853708294px 0 #000, 0.2410733605106464px -1.985417748196108px 0 #000, 1.1361294934623096px -1.645967731787314px 0 #000, 1.77091205130642px -0.9294463440875368px 0 #000;
+}
+
+.green-button:active,
+.green-button:hover {
+     background-color: #699645;
+     transition: all 0s;
+     translate: 0 2.5px;
+     box-shadow: 0 4px 2.5px -2.5px rgba(0 0 0 / .5), 0 2.5px 0 #699645;
+}
+
+
+.screen-rules {
+     display: flex;
+     flex-direction: column;
+}
+
+.screen-rules img {
+     width: 95%;
+     margin-inline: auto;
+}
+
+.screen-rules .card {
+     flex-grow: 1;
+     background-color: var(--yellow);
+     font-family: 'MarketDeco';
+     box-shadow: -0.6rem 0 0 0 #67D2F4;
+     margin: 1rem;
+     border-radius: 3.5rem;
+     transform: translateX(.3rem);
+     filter: drop-shadow(0 0 3px rgba(0 0 0 / 0.5));
+     display: flex;
+     flex-direction: column;
+     padding-bottom: 1rem;
+     max-width: calc(100% - 1rem);
+}
+
+.screen-rules h1 {
+     text-align: center;
+     color: white;
+     font-size: 3rem;
+     margin-bottom: 0;
+     text-shadow: 2px 0px 0 #000, 1.7709120513064198px 0.929446344087537px 0 #000, 1.1361294934623118px 1.6459677317873127px 0 #000, 0.241073360510646px 1.985417748196108px 0 #000, -0.7092097740850709px 1.8700324853708297px 0 #000, -1.4970214963422024px 1.3262453164815904px 0 #000, -1.941883634852104px 0.47863132857511537px 0 #000, -1.9418836348521042px -0.47863132857511487px 0 #000, -1.4970214963422026px -1.32624531648159px 0 #000, -0.7092097740850718px -1.8700324853708294px 0 #000, 0.2410733605106464px -1.985417748196108px 0 #000, 1.1361294934623096px -1.645967731787314px 0 #000, 1.77091205130642px -0.9294463440875368px 0 #000;
+}
+
+.screen-rules ol {
+     font-size: 4vh;
+     margin: 0 2rem;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+     flex-grow: 1;
+}
+
+.screen-rules button {
+     width: 80%;
+     margin-bottom: 1rem;
+}
+
+
+
+.screen-game {
+     display: flex;
+     flex-direction: column;
+     overflow: visible;
+}
+
+.screen-game img {
+     width: 80%;
+     margin: auto;
+}
+
+
+.screen-game .green-button {
+     background-color: var(--purple);
+     box-shadow: 0 4px 5px -5px rgba(0 0 0 / .5), 0 5px 0 #6B4799;
+     margin-bottom: 1rem;
+     width: 80%;
+     margin-top: 1rem;
+}
+
+.screen-game .green-button:hover {
+     background-color: #6B4799;
+     transition: all 0s;
+     translate: 0 2.5px;
+     box-shadow: 0 4px 2.5px -2.5px rgba(0 0 0 / .5), 0 2.5px 0 #6B4799;
+}
+
+.screen-game .cardstack {
+     flex-grow: 1;
+     position: relative;
+     width: calc(100% - 2rem);
+}
+
+.screen-game .card {
+     background-color: rgba(0 0 0 / 0.1);
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: calc(100% - 2rem);
+     height: 100%;
+     border-radius: 2rem;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     align-items: center;
+     font-family: 'MarketDeco';
+     transition: left .5s;
+     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+     z-index: 10;
+}
+
+.screen-game .card:nth-child(1) {
+     left: 0rem;
+}
+
+.screen-game .card:nth-child(2) {
+     left: 1rem;
+}
+
+.screen-game .card:nth-child(3) {
+     left: 2rem;
+}
+
+
+.screen-game .card.card-green {
+     background-color: var(--green);
+}
+
+.screen-game .card.card-yellow {
+     background-color: var(--yellow);
+}
+
+.screen-game .card.card-blue {
+     background-color: var(--blue);
+}
+
+
+.screen-game .card img {
+     width: min(5rem, 12vw);
+     margin-bottom: 1rem;
+     filter: drop-shadow(0px 3px 5px rgba(0 0 0 / .5));
+}
+
+.screen-game .card p {
+     flex-grow: 1;
+     text-align: center;
+     margin-inline: 1rem;
+     display: flex;
+     align-items: center;
+     font-size: min(4.5vh, 3rem);
+     width: calc(100% - 2rem);
+}
+
+.screen-game .card p span {
+     display: inline-block;
+     width: 100%;
+     word-wrap: break-word;
+     transition: all .1s;
+}
+
+.screen-game .card.hidden p span {
+     filter: blur(10px)
+}
+
+.screen-game .card p::before {
+     font-size: 20vh;
+     content: '?';
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     opacity: 0;
+     transition: opacity .1s;
+     filter: blur(0px);
+     z-index: 11;
+     text-shadow: 10px 0px 0 #FFF,9.950307753654014px 0.9956784659581666px 0 #FFF,9.801724878485437px 1.9814614319939758px 0 #FFF,9.555728057861408px 2.947551744109042px 0 #FFF,9.214762118704076px 3.8843479627469475px 0 #FFF,8.782215733702285px 4.7825397862131815px 0 #FFF,8.262387743159948px 5.63320058063622px 0 #FFF,7.66044443118978px 6.4278760968653925px 0 #FFF,6.982368180860728px 7.158668492597185px 0 #FFF,6.2348980185873355px 7.818314824680298px 0 #FFF,5.425462638657594px 8.400259231507714px 0 #FFF,4.562106573531631px 8.898718088114686px 0 #FFF,3.65341024366395px 9.308737486442043px 0 #FFF,2.7084046814300518px 9.62624246950012px 0 #FFF,1.7364817766693041px 9.84807753012208px 0 #FFF,0.747300935864244px 9.972037971811801px 0 #FFF,-0.24930691738072913px 9.996891820008162px 0 #FFF,-1.2434370464748516px 9.92239206600172px 0 #FFF,-2.2252093395631434px 9.749279121818237px 0 #FFF,-3.1848665025168432px 9.479273461671319px 0 #FFF,-4.112871031306114px 9.115058523116733px 0 #FFF,-5.000000000000002px 8.660254037844386px 0 #FFF,-5.8374367223478965px 8.119380057158565px 0 #FFF,-6.616858375968592px 7.497812029677345px 0 #FFF,-7.330518718298263px 6.801727377709193px 0 #FFF,-7.9713250722292255px 6.038044103254774px 0 #FFF,-8.532908816321555px 5.214352033794981px 0 #FFF,-9.00968867902419px 4.338837391175582px 0 #FFF,-9.396926207859083px 3.420201433256689px 0 #FFF,-9.690772862290778px 2.4675739769029383px 0 #FFF,-9.888308262251286px 1.4904226617617473px 0 #FFF,-9.987569212189223px 0.4984588566069748px 0 #FFF,-9.987569212189223px -0.4984588566069723px 0 #FFF,-9.888308262251286px -1.4904226617617446px 0 #FFF,-9.69077286229078px -2.467573976902936px 0 #FFF,-9.396926207859085px -3.4202014332566866px 0 #FFF,-9.009688679024192px -4.33883739117558px 0 #FFF,-8.532908816321557px -5.214352033794979px 0 #FFF,-7.971325072229226px -6.038044103254771px 0 #FFF,-7.330518718298265px -6.801727377709192px 0 #FFF,-6.616858375968597px -7.497812029677339px 0 #FFF,-5.837436722347906px -8.11938005715856px 0 #FFF,-4.9999999999999964px -8.660254037844389px 0 #FFF,-4.112871031306116px -9.115058523116732px 0 #FFF,-3.18486650251685px -9.479273461671315px 0 #FFF,-2.225209339563146px -9.749279121818237px 0 #FFF,-1.2434370464748583px -9.92239206600172px 0 #FFF,-0.24930691738073157px -9.996891820008162px 0 #FFF,0.7473009358642436px -9.972037971811801px 0 #FFF,1.7364817766692997px -9.848077530122081px 0 #FFF,2.708404681430051px -9.62624246950012px 0 #FFF,3.6534102436639455px -9.308737486442045px 0 #FFF,4.562106573531628px -8.898718088114686px 0 #FFF,5.425462638657597px -8.400259231507713px 0 #FFF,6.234898018587334px -7.818314824680299px 0 #FFF,6.98236818086073px -7.158668492597183px 0 #FFF,7.660444431189778px -6.427876096865396px 0 #FFF,8.262387743159945px -5.6332005806362275px 0 #FFF,8.782215733702284px -4.782539786213186px 0 #FFF,9.214762118704076px -3.8843479627469475px 0 #FFF,9.555728057861405px -2.947551744109047px 0 #FFF,9.801724878485437px -1.9814614319939772px 0 #FFF,9.950307753654013px -0.9956784659581729px 0 #FFF;
+}
+
+.screen-game .card.hidden p::before {
+     opacity: 1!important;
+}
+
+.screen-game .card.hidden h1 span {
+     font-size: 0;
+}
+
+.screen-game .card.hidden h1 span::before {
+     content: '???';
+     font-size: min(3rem, 10vw);
+}
+
+
+.screen-game .card h1 {
+     color: white;
+     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+     font-size: min(3rem, 10vw)
 }

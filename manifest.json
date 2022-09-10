@@ -457,5 +457,5 @@
      "background_color": "#FFFFFF",
      "display": "standalone",
      "orientation": "portait",
-     "prefer_related_applications": "false"
+     "prefer_related_applications": false
 }

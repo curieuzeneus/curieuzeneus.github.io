@@ -19,19 +19,163 @@
 <body>
 
      <div class="background">
-          <svg id="blob-1" class="blob blob-shape-1 blob-yellow-blue-purple" viewBox="0 0 500 500" preserveAspectRatio="none"><path></path><path></path><path></path></svg>
-          <svg id="blob-2" class="blob blob-shape-2 blob-purple-blue-yellow" viewBox="0 0 500 500" preserveAspectRatio="none"><path></path><path></path><path></path></svg>
-          <svg id="blob-3" class="blob blob-shape-3 blob-yellow-purple" viewBox="0 0 500 500" preserveAspectRatio="none"><path></path><path></path><path></path></svg>
-          <svg id="blob-4" class="blob blob-shape-4 blob-blue-yellow" viewBox="0 0 500 500" preserveAspectRatio="none"><path></path><path></path><path></path></svg>
+          <svg id="blob-1" class="blob blob-shape-1 blob-yellow-blue-purple" viewBox="0 0 500 500"
+               preserveAspectRatio="none">
+               <path></path>
+               <path></path>
+               <path></path>
+          </svg>
+          <svg id="blob-2" class="blob blob-shape-2 blob-purple-blue-yellow" viewBox="0 0 500 500"
+               preserveAspectRatio="none">
+               <path></path>
+               <path></path>
+               <path></path>
+          </svg>
+          <svg id="blob-3" class="blob blob-shape-3 blob-yellow-purple" viewBox="0 0 500 500"
+               preserveAspectRatio="none">
+               <path></path>
+               <path></path>
+               <path></path>
+          </svg>
+          <svg id="blob-4" class="blob blob-shape-4 blob-blue-yellow" viewBox="0 0 500 500" preserveAspectRatio="none">
+               <path></path>
+               <path></path>
+               <path></path>
+          </svg>
      </div>
-     <div class="foreground blurry-background">
-          <div class="splashscreen">
+     <div class="foreground">
+          <div class="screen shown screen-splash">
                <img src="../logo_transparent.png" alt="Curieuzeneus logo" draggable="false">
                <!--<svg class="logo-text"><text x="51.5%" y="50%" dominant-baseline="middle" text-anchor="middle">CURIEUZENEUS</text></svg>-->
                <img src="../logo_text.png" alt="CURIEUZENEUS" draggable="false">
                <button id="continue">TIK OM VERDER TE GAAN</button>
           </div>
+          <div class="screen screen-home">
+               <img src="../logo_text.png" alt="CURIEUZENEUS" draggable="false">
+               <div class="buttons">
+                    <button class="green-button" id="startgame">SPEEL</button>
+                    <button class="green-button" id="openrules">SPELREGELS</button>
+               </div>
+               <img src="../logo_transparent.png" alt="Curieuzeneus logo" draggable="false">
+          </div>
+          <div class="screen screen-rules">
+               <img src="../logo_text.png" alt="CURIEUZENEUS" draggable="false">
+               <div class="card">
+                    <h1>SPELREGELS</h1>
+                    <ol>
+                         <li>BEANTWOORD DE VRAGEN ZONDER DE VRAAG VOOR TE LEZEN</li>
+                         <li>GEEN ANTWOORD: DRINKEN</li>
+                         <li>CURIEUZENEUZEN: DRINKEN</li>
+                         <li>SPEEL OM DE BEURT</li>
+                    </ol>
+               </div>
+               <button class="green-button" id="showhomerules">TERUG</button>
+          </div>
+          <div class="screen screen-game">
+               <img src="../logo_text.png" alt="CURIEUZENEUS" draggable="false">
+               <div class="cardstack">
+               </div>
+               <button class="green-button" id="showhomegame">TERUG</button>
+          </div>
      </div>
+
+     <script>
+          function showHome() {
+               document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('shown'));
+               document.querySelector('.screen-home').classList.add('shown')
+               document.querySelector('.background').classList.remove('opaque')
+          }
+
+          function showRules() {
+               document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('shown'));
+               document.querySelector('.screen-rules').classList.add('shown')
+               document.querySelector('.background').classList.add('opaque')
+          }
+
+          document.querySelector('#startgame').addEventListener('click', startGame)
+
+          document.querySelector('#openrules').addEventListener('click', showRules)
+
+          document.querySelector('#showhomegame').addEventListener('click', showHome)
+          document.querySelector('#showhomerules').addEventListener('click', showHome)
+          document.querySelector('.screen-splash').addEventListener('click', showHome)
+
+
+
+          // Game stuff
+
+          function shuffle(array) {
+               let currentIndex = array.length, randomIndex;
+
+               // While there remain elements to shuffle.
+               while (currentIndex != 0) {
+
+                    // Pick a remaining element.
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex--;
+
+                    // And swap it with the current element.
+                    [array[currentIndex], array[randomIndex]] = [
+                         array[randomIndex], array[currentIndex]];
+               }
+
+               return array;
+          }
+
+          let huidigeVraag = 0;
+          const kleuren = ['blue', 'yellow', 'green']
+
+          let vragenlijst = [];
+          fetch('../vragenlijst.txt')
+               .then(res => res.text())
+               .then(data => {
+                    vragenlijst = data.replaceAll('\r', '').split('\n').map((question, index) => ({ index, question }));
+               })
+
+          function startGame() {
+               document.querySelector('.cardstack').innerHTML = '';
+               shuffle(vragenlijst);
+               huidigeVraag = 0;
+               for (let question of vragenlijst.slice(0, 3))
+                    addCard(question.question, question.index)
+               document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('shown'));
+               document.querySelector('.screen-game').classList.add('shown')
+               document.querySelector('.background').classList.add('opaque')
+          }
+
+          function addCard(question, number) {
+               document.querySelector('.cardstack').insertAdjacentHTML('afterbegin', /*html*/`
+                    <div class="card card-${kleuren[huidigeVraag % kleuren.length]} hidden">
+                         <h1>Vraag #<span>${number + 1}</span></h1>
+                         <p lang="nl"><span>${question}</span></p>
+                         <img src="../logo_transparent.png" alt="Curieuzeneus logo" draggable="false">
+                    </div>
+               `)
+               ++huidigeVraag;
+          }
+
+          document.querySelector('.cardstack').addEventListener('click', (event) => { 
+               if (event.target.closest('.card') && event.target.closest('.card').classList.contains('hidden'))
+                    showCard()
+               else if (event.target.closest('.card'))
+                    nextCard() 
+          })
+
+          function showCard () {
+               document.querySelector('.cardstack .card:last-child').classList.remove('hidden')
+          }
+
+          async function nextCard() {
+               let topCard = document.querySelector('.cardstack .card:last-child')
+               document.querySelector('.cardstack').style.pointerEvents = 'none'
+               topCard.style.left = "100vw"
+               await new Promise(r => setTimeout(r, 500));
+               document.querySelector('.cardstack').style.pointerEvents = 'inherit'
+               if (!topCard) return;
+               topCard.remove();
+               addCard(vragenlijst[huidigeVraag].question, vragenlijst[huidigeVraag].index)
+          }
+     </script>
 
      <script>
           if ('serviceWorker' in navigator) {
